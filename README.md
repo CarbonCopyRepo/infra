@@ -4,3 +4,4 @@
   * Reasonable fire structure
   * Variables
   * Actual container setup
+  * Store state files in storage bucket
