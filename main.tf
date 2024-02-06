@@ -1,4 +1,4 @@
-resource "google_storage_bucket" "carbon_copy_bucket_test1" {
+resource "google_storage_bucket" "carbon-copy_bucket_test123223" {
   name                     = "Test"
   project                  = "carbonme"
   location                 = "US"
