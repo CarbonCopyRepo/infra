@@ -1,4 +1,5 @@
 name: 'Terraform'
+run-name: ${{ github.actor }} pushed to main, running Terraform
 
 on:
   push:
