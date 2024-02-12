@@ -1,6 +1,6 @@
 terraform {
  backend "gcs" {
-   bucket  = google_storage_bucket.name
+   bucket  = carbon-copy-storage-bucket
    prefix  = "terraform/state"
  }
 }
