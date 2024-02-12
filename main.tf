@@ -7,7 +7,7 @@ resource "google_storage_bucket" "carbon-copy-state-bucket" {
   force_destroy = false
   location      = "US"
   storage_class = "STANDARD"
-  project = "CarbonCopy"
+  project       = "CarbonCopy"
   versioning {
     enabled = true
   }
