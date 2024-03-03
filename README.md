@@ -17,11 +17,6 @@
 * modules.tf
     * Holds all of the modules
 
-* env, prod, staging directories
-    * Self explanatory, env for iteration, staging for testing and prod for production build.
-    * modules from the environment modules file (i.e. dev/modules.tf, prod/modules.tf, etc). These modules are *inherited* from modules/modules.tf
-    * resources.tf are the specific resources needed for the
-
 ### Naming
 * Name all configurations/objects in snake_case (i.e resource "resource" resource_name)
 * Make names singular
