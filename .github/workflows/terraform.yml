@@ -2,9 +2,8 @@ name: 'Terraform'
 run-name: ${{ github.actor }} pushed to main, running Terraform
 
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
+    branches: [ "main" ]
 
 permissions:
   contents: read
