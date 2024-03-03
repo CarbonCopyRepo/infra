@@ -1,6 +1,6 @@
 resource "google_compute_network" "vpc_network" {
-  project = "CarbonCopy"
-  name = "vpc-network"
+  project                 = "carbonme"
+  name                    = "vpc-network"
   auto_create_subnetworks = true
 }
 
@@ -13,6 +13,7 @@ resource "google_storage_bucket" "carbon_copy_storage_bucket" {
   force_destroy = false
   location      = "US"
   storage_class = "STANDARD"
+  project       = "carbonme"
   versioning {
     enabled = true
   }
