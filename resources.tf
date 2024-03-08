@@ -23,6 +23,19 @@ resource "google_compute_firewall" "ssh" {
   }
 }
 
+resource "google_compute_firewall" "allow_https" {
+  name    = "allow-https"
+  project = local.project_name
+  network = google_compute_network.vpc_network.id
+
+  allow {
+    protocol = "tcp"
+    ports    = ["443"]
+  }
+
+  source_ranges = ["0.0.0.0/0"]
+}
+
 resource "random_id" "bucket_prefix" {
   byte_length = 8
 }
@@ -59,7 +72,7 @@ resource "google_compute_instance" "frontend_container" {
 
   boot_disk {
     initialize_params {
-      image = "debian-cloud/debian-11"
+      image = "cos-cloud/cos-stable"
     }
   }
 
