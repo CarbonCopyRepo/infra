@@ -1,5 +1,6 @@
 locals {
   project_name = "carbonme"
+  zone         = "us-central1-a"
 }
 
 resource "google_compute_network" "vpc_network" {
@@ -21,6 +22,19 @@ resource "google_compute_firewall" "ssh" {
     ports    = ["22"]
     protocol = "tcp"
   }
+}
+
+resource "google_compute_firewall" "allow_https" {
+  name    = "allow-https"
+  project = local.project_name
+  network = google_compute_network.vpc_network.id
+
+  allow {
+    protocol = "tcp"
+    ports    = ["443"]
+  }
+
+  source_ranges = ["0.0.0.0/0"]
 }
 
 resource "random_id" "bucket_prefix" {
@@ -52,14 +66,14 @@ resource "google_storage_bucket" "data_storage_bucket" {
 resource "google_compute_instance" "frontend_container" {
   name                      = "carboncopy-frontend-terraform-container"
   description               = "Compute engine for the frontend"
-  zone                      = "us-central1-a"
+  zone                      = local.zone
   machine_type              = "e2-micro"
   project                   = local.project_name
   allow_stopping_for_update = true
 
   boot_disk {
     initialize_params {
-      image = "debian-cloud/debian-11"
+      image = "cos-cloud/cos-stable"
     }
   }
 
