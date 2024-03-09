@@ -1,5 +1,6 @@
 locals {
   project_name = "carbonme"
+  zone         = "us-central1-a"
 }
 
 resource "google_compute_network" "vpc_network" {
@@ -65,7 +66,7 @@ resource "google_storage_bucket" "data_storage_bucket" {
 resource "google_compute_instance" "frontend_container" {
   name                      = "carboncopy-frontend-terraform-container"
   description               = "Compute engine for the frontend"
-  zone                      = "us-central1-a"
+  zone                      = local.zone
   machine_type              = "e2-micro"
   project                   = local.project_name
   allow_stopping_for_update = true
@@ -84,4 +85,12 @@ resource "google_compute_instance" "frontend_container" {
     }
   }
 
+}
+
+resource "google_artifact_registry_repository" "frontend_container_repo" {
+  repository_id = "frontend-container-repo"
+  format        = "DOCKER"
+  project       = local.project_name
+  location      = "us-central1"
+  description   = "Registry repositry for the frontend docker container"
 }
