@@ -86,11 +86,3 @@ resource "google_compute_instance" "frontend_container" {
   }
 
 }
-
-resource "google_artifact_registry_repository" "frontend_container_repo" {
-  repository_id = "frontend-container-repo"
-  format        = "DOCKER"
-  project       = local.project_name
-  location      = "us-central1"
-  description   = "Registry repositry for the frontend docker container"
-}
